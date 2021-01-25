@@ -3878,6 +3878,11 @@ faye-websocket@^0.11.3:
   dependencies:
     websocket-driver ">=0.5.1"
 
+femtotween@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/femtotween/-/femtotween-1.1.2.tgz#b6993ebd01ab1da15f052f8211d3f5bb9543c5dd"
+  integrity sha512-ptyQJbl+HFSOO5jrstr+q03j035dlWAl+55hXPnNgse2tLoIVDMD6khsyjTPQ7LqTgMKxgiqPTxq9ua5pa22hQ==
+
 figgy-pudding@^3.5.1:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.2.tgz#b4eee8148abb01dcf1d1ac34367d59e12fa61d6e"
@@ -7558,6 +7563,11 @@ shelljs@^0.8.3:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
+shifty@^2.1.2:
+  version "2.15.2"
+  resolved "https://registry.yarnpkg.com/shifty/-/shifty-2.15.2.tgz#be74f83b5494708ca5531c3725027a0b51d1dc3d"
+  integrity sha512-uaDIdYXrOGncvPula4Pi2jl7kv46IwvZ10AYBSGsl/vrvclOXqzMWOAQCgDjNR7LVPgQki0CTtOMJOH9gnJgsg==
+
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
@@ -8244,6 +8254,11 @@ tunnel-agent@^0.6.0:
   dependencies:
     safe-buffer "^5.0.1"
 
+tween@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/tween/-/tween-0.9.0.tgz#f856c7a9c9ab85ca9a2bc02282591aa2513a20ed"
+  integrity sha1-+FbHqcmrhcqaK8AiglkaolE6IO0=
+
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
@@ -8591,6 +8606,13 @@ vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
+
+vue-tween-number@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/vue-tween-number/-/vue-tween-number-1.0.2.tgz#c461cefec44f89a2683bf1d36d68edea3b05624a"
+  integrity sha512-wjLTGGAT2rInYrxLnyf+GI7Z50r6RAChTK8I72eFA3dApi0chzTiyFFlefSJNHANSreyOTsWZ+AE7viMSeveSQ==
+  dependencies:
+    shifty "^2.1.2"
 
 vue@^2.6.11:
   version "2.6.12"

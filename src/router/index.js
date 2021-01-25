@@ -8,6 +8,7 @@ const routes = [
   ...constants.pages, 
   ...constants.user_pages,
   ...constants.detail_pages,
+  ...constants.other_pages
 ]
 
 const router = new VueRouter({

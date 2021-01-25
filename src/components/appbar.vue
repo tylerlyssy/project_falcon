@@ -7,11 +7,15 @@
     <v-row align="center">
       <v-col cols="1">
         <!-- <v-img class="mt-auto" @click="$router.push('/')" height="50" src="../assets/97849.svg"/> -->
-        <h1>UTAP</h1>
+        <h1 @click="$router.push('/')">UTAP</h1>
       </v-col>
       <v-col cols="5">
         <v-card>
-          <v-breadcrumbs class="ml-2 pa-1" :items="items">
+          <v-breadcrumbs 
+            class="ml-2 pa-1" 
+            :items="items"
+            v-if="$_.includes($route.name, '_list') || $_.includes($route.name, 'detail')"
+          >
             <template v-slot:item="{ item }">
               <v-breadcrumbs-item
                 :to="item.to"
