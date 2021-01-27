@@ -10,14 +10,16 @@
     <v-footer app>
       <v-row
         align="center" 
-        justify="space-between" 
-        class="ma-0 pa-0"
-        v-if="$_.includes($route.name, '_list')"
+        justify="space-between"
       >
-        <v-col class="ma-0 pa-0">
+        <v-col>
+          <v-chip class="my-1">
+            v2021.0.0
+          </v-chip>
         </v-col>
-        <v-col cols="4" class="ma-0 pa-0">
+        <v-col cols="4">
           <v-text-field 
+            v-if="$_.includes($route.name, '_list')"
             ref="search_"
             filled
             single-line

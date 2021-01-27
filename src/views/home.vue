@@ -46,7 +46,7 @@
             auto-draw
           >
             <template v-slot:label="item">
-              {{ item.index + 1 }}
+              {{ item.value }}
             </template>
           </v-sparkline>
         </v-card-text>
@@ -67,9 +67,9 @@ export default {
         {name: 'Releases Certified', num: 120},
       ],
       charts: [
-        {name: 'Completed last 24 hrs', value: this.$_.map(array, () => this.$_.random(0, 10))},
-        {name: 'Completed last 2 days', value: this.$_.map(array, () => this.$_.random(0, 10))},
-        {name: 'Completed last 7 days', value: this.$_.map(array, () => this.$_.random(0, 10))},
+        {name: 'Last 24 hrs', value: this.$_.map(array, () => this.$_.random(0, 100))},
+        {name: 'Last 2 days', value: this.$_.map(array, () => this.$_.random(100, 1000))},
+        {name: 'Last 7 days', value: this.$_.map(array, () => this.$_.random(1000, 10000))},
       ],
       array,
       intervals: [null, null, null]

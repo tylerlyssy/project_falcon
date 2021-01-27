@@ -10,6 +10,7 @@ import tag_list from './views/tag_list'
 import tag_detail from './views/tag_detail'
 import release_list from './views/release_list'
 import event_list from './views/event_list'
+import event_detail from './views/event_detail'
 import settings from './views/settings'
 import user from './views/user'
 import status from './views/status'
@@ -38,6 +39,7 @@ let constants = {
     {path: '/plans/:name', name: 'plan_detail', component: plan_detail, props: true},
     {path: '/tags/:name', name: 'tag_detail', component: tag_detail, props: true},
     {path: '/playlists/:name', name: 'playlist_detail', component: playlist_detail, props: true},
+    {path: '/events/:name', name: 'event_detail', component: event_detail, props: true},
   ],
   other_pages: [
     {path: '/', name: 'home', component: home, props: true},
