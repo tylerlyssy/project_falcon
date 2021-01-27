@@ -14,10 +14,19 @@
       ></v-list-item-title>
       <v-list-item-subtitle
         class="ma-0"
-        v-text="`
-          Created At: ${new Date().toLocaleDateString('en-US')} - Last Executed At: ${new Date().toLocaleDateString('en-US')}
-        `"
-      ></v-list-item-subtitle>
+        v-text="`Created At: ${item.created_at}`"
+        v-if="item.created_at"
+      />
+      <v-list-item-subtitle
+        class="ma-0"
+        v-text="`Started At: ${item.started_at}`"
+        v-if="item.started_at"
+      />
+      <v-list-item-subtitle
+        class="ma-0"
+        v-text="`Ended At: ${item.ended_at}`"
+        v-if="item.ended_at"
+      />
     </v-list-item-content>
     <v-col cols=6>
       <v-row>

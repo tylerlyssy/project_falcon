@@ -11,8 +11,8 @@
       </v-row>
       <v-form>
         <v-chip-group column>
-          <v-chip :color="trigger.color" filter v-for="trigger in plan.triggers" :key="trigger.name">
-            {{ trigger.name }}
+          <v-chip :color="event.color" filter v-for="event in plan.events" :key="event.name">
+            {{ event.name }}
           </v-chip>
         </v-chip-group>
       </v-form>
@@ -35,6 +35,7 @@
         </v-btn-toggle>
       </v-row>
     </v-navigation-drawer>
+    <h1>Test Cases</h1>
     <v-list two-lines width="80%">
       <v-list-item-group>
         <template v-for="(test, index) in tests">
@@ -57,7 +58,7 @@
               </v-list-item-content>
               <v-chip-group column>
                 <v-chip :color="tag.color" filter v-for="tag in test.tags" :key="tag.name">
-                  {{ tag.name }}
+                  {{ tag.display_name }}
                 </v-chip>
               </v-chip-group>
               <v-col cols=3 class="pa-0 ma-0">

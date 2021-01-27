@@ -3,12 +3,13 @@
     <v-list-item-group>
       <template v-for="(item, index) in filtered_items">
         <v-list-item 
+         
           active="false"
           :key="item.name"
           @click="$router.push({name: `${name}_detail`, params: {name: item.name}})"
         >
           <template v-slot:default="">
-            <component :is="component" :item="item"/>
+            <component  transition="scale-transition" :is="component" :item="item"/>
           </template>
         </v-list-item>
 
@@ -42,7 +43,14 @@ export default {
           }
         )
       } else {
-        return this.items
+        let search = this.$store.getters.search
+        if(search) {
+          return this.$_.filter(this.items, (i) => {
+            return new RegExp(`.*${search}.*`, 'ig').test(i.name)
+          })
+        } else {
+          return this.items
+        }
       }
     }
   }

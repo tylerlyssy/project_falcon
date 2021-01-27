@@ -6,7 +6,6 @@
   >
     <v-row align="center">
       <v-col cols="1">
-        <!-- <v-img class="mt-auto" @click="$router.push('/')" height="50" src="../assets/97849.svg"/> -->
         <h1 @click="$router.push('/')">UTAP</h1>
       </v-col>
       <v-col cols="5">
@@ -30,7 +29,7 @@
       </v-col>
       <v-col cols=4>
         <v-combobox
-          v-if="$_.includes($route.name, '_list') && $route.name !== 'plan_list'"
+          v-if="$_.includes(['device_list', 'test_list'], $route.name)"
           dense
           class="mt-7"
           v-model="f_tags"

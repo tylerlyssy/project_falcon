@@ -16,20 +16,18 @@
         "
       ></v-list-item-subtitle>
     </v-list-item-content>
-    <v-chip-group column>
-      <v-chip :color="tag.color" filter v-for="tag in item.tags" :key="tag.name">
-        {{ tag.display_name }}
-      </v-chip>
-    </v-chip-group>
+    <taggroup :item="item"/>
     <v-list-item-action>
       <v-icon :color="item.health ? 'success' : 'error'"> mdi-heart </v-icon>
     </v-list-item-action>
   </v-row>    
 </template>
 <script>
+import taggroup from './taggroup.vue'
 export default {
+  components: { taggroup },
   props: {
-    item: Object
+    item: Object,
   }
 }
 </script>

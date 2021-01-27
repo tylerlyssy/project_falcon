@@ -9,6 +9,7 @@ import plan_detail from './views/plan_detail'
 import tag_list from './views/tag_list'
 import tag_detail from './views/tag_detail'
 import release_list from './views/release_list'
+import event_list from './views/event_list'
 import settings from './views/settings'
 import user from './views/user'
 import status from './views/status'
@@ -24,6 +25,7 @@ let constants = {
     {path: '/playlists', name: 'playlist_list', icon: 'list-status', component: playlist_list},
     {path: '/releases', name: 'release_list', icon: 'chart-timeline', component: release_list},
     {path: '/tags', name: 'tag_list', icon: 'tag-multiple', component: tag_list},
+    {path: '/events', name: 'event_list', icon: 'timeline-alert', component: event_list},
   ],
   user_pages: [
     {path: '/settings', name: 'settings', icon: 'cog', component: settings},

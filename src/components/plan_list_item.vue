@@ -20,8 +20,8 @@
       ></v-list-item-subtitle>
     </v-list-item-content>
     <v-chip-group column>
-      <v-chip :color="trigger.color" filter v-for="trigger in item.triggers" :key="trigger.name">
-        {{ trigger.type }}
+      <v-chip :color="event.color" filter v-for="event in item.events" :key="event.name">
+        {{ event.display_name }}
       </v-chip>
     </v-chip-group>
   </v-row>    

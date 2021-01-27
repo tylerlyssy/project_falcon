@@ -4,6 +4,12 @@ import _ from 'lodash'
 import randomWords from 'random-words'
 
 Vue.use(Vuex)
+Date.prototype.minus_days = function(days, mins) {
+  var date = new Date(this.valueOf());
+  date.setDate(date.getDate() - days);
+  date.setTime(date.getTime() - mins);
+  return date;
+}
 
 function make_name(_max) {
   let name = _.startCase(randomWords({ min: 1, max: _max || 5, join: ' ' }))
@@ -11,6 +17,17 @@ function make_name(_max) {
     display_name: name,
     name: name.replace(/ /g, '_').toLowerCase()
   }
+}
+
+function make_dates(additions) {
+  let dates = {
+    created_at: new Date().minus_days(_.random(1, 1000), _.random(100000, 100000000)),
+    updated_at: new Date().minus_days(_.random(1, 1000), _.random(100000, 100000000)),
+  }
+  for(let addition of additions || []) {
+    dates[addition] = new Date().minus_days(_.random(1, 1000), _.random(100000, 100000000))
+  }
+  return dates
 }
 
 let colors = [
@@ -34,7 +51,8 @@ let colors = [
 
 let tags = _.map(colors, c => {
   return {
-    ...make_name(),
+    ...make_name(2),
+    ...make_dates(),
     color: c,
     icon: ['tag-text', 'tag-heart'][_.random(0,1)]
   }
@@ -45,6 +63,7 @@ let tests = _.map([...Array(50).keys()], i => {
   
   return {
     ...make_name(),
+    ...make_dates(),
     icon: icons[_.random(0, 2)],
     tags: _.map(
       [...Array(_.random(0, 3)).keys()],
@@ -70,6 +89,7 @@ let devices = _.map([...Array(50).keys()], () => {
   ];
   return {
     ...make_name(),
+    ...make_dates(),
     health: _.random(0, 10) % 2 == 0,
     actions: [
       {name: 'reboot', type: 'button'},
@@ -102,25 +122,43 @@ function make_user() {
   }
 }
 
+let events = _.map([...Array(50).keys()], (i) => {
+  let days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+  let colors = ['succes', 'error', 'warning', 'accent']
+  let {name} = make_name(1)
+  if(i % _.random(2, 5) === 0) {
+    name = `every_${days[_.random(0, 6)]}_at_${_.random(1, 23)}REPLACE${_.random(0, 6)}${_.random(0, 6)}`
+  } else {
+    name = `new_${name}`
+  }
+  let event = {
+    ...make_dates(),
+    name: name.replace('REPLACE', ':'),
+    display_name: _.startCase(name).replace('REPLACE', ':'),
+    color: _.startsWith(name, 'every') ? 'primary' : colors[_.random(0, 3)]
+  }
+  if(_.startsWith(name, 'every')) {
+    event.next_run_time = new Date().minus_days(_.random(1, 10), _.random(1000000, 100000000))
+  } else {
+    event.last_run_time = new Date().minus_days(_.random(1, 10), _.random(1000000, 100000000))
+  }
+  return event
+})
+
+
 let plans = _.map([...Array(50).keys()], () => {
-  let types = ['cron', 'event']
+  
   let random = _.random(0, 40)
   return {
     ...make_name(),
     ...make_user(),
+    ...make_dates(),
     tests: _.map(tests.slice(random, random + 5), t => {
       t.iterations = _.random(1, 10)
       t.is_selected = true
       return t
     }),
-    triggers: _.map([...Array(3).keys()], j => {
-      let t_type = types[_.random(0,1)]
-      return {
-        name: `trigger_${j}`,
-        type: t_type,
-        color: t_type === 'cron' ? 'primary' : 'secondary'
-      }
-    })
+    events: [events[_.random(0, 49)]]
   }
 })
 
@@ -128,12 +166,15 @@ let playlists = _.map([...Array(50).keys()], () => {
   let statuses = ['aborted', 'cancelled', 'passed', 'failed', 'queued', 'running']
   let random = _.random(0, 4)
   let status = ''
+  let additions = []
   if(random % 5 === 0) {
     status = 'running'
+    additions = ['started_at']
   } else if(random % 3 === 0) {
     status = 'queued'
   } else {
     status = 'finished'
+    additions = ['started_at', 'ended_at']
   }
   let is_running = false
   let test_runs = _.flatten(_.map(plans[_.random(0, 49)].tests, test => {
@@ -162,6 +203,7 @@ let playlists = _.map([...Array(50).keys()], () => {
   return {
     ...make_name(),
     ...make_user(),
+    ...make_dates(additions),
     status_map: {
       'passed': count_map['passed'] || 0,
       'failed': count_map['failed'] || 0,
@@ -181,6 +223,7 @@ let releases = _.map([...Array(50).keys()], () => {
   let random = _.random(1,4)
   let steps = _.map([...Array(_.random(1, 4)).keys()], (i) => {
     return {
+      ...make_dates(),
       label: make_name().name,
       stage: stages[i],
       complete: i < random,
@@ -211,7 +254,9 @@ export default new Vuex.Store({
     tags,
     plans,
     playlists,
-    releases
+    releases,
+    events,
+    search: ''
   },
   getters: {
     tags_for_filtering(state) {
@@ -235,10 +280,19 @@ export default new Vuex.Store({
     releases(state) {
       return state.releases
     },
+    events(state) {
+      return state.events
+    },
+    search(state) {
+      return state.search
+    }
   },
   mutations: {
     set_tags_for_filtering(state, tags) {
       state.tags_for_filtering = tags
+    },
+    set_search(state, search) {
+      state.search = search
     }
   },
   actions: {

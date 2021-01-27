@@ -9,23 +9,24 @@
       ></v-list-item-title>
       <v-list-item-subtitle
         class="ma-0"
-        v-text="`
-          Created At: ${new Date().toLocaleDateString('en-US')} - Last Executed At: ${new Date().toLocaleDateString('en-US')}
-        `"
-      ></v-list-item-subtitle>
+        v-text="`Created At: ${item.created_at}`"
+      />
+      <v-list-item-subtitle
+        class="ma-0"
+        v-text="`Started At: ${item.started_at}`"
+      />
     </v-list-item-content>
-    <v-chip-group column>
-      <v-chip :color="tag.color" filter v-for="tag in item.tags" :key="tag.name">
-        {{ tag.display_name }}
-      </v-chip>
-    </v-chip-group>
+    <taggroup :item="item"/>
     <v-list-item-action>
       <v-icon :color="item.status ? 'success' : 'error'">{{item.status ? 'mdi-check-circle' : 'mdi-close-circle'}} </v-icon>
     </v-list-item-action>
   </v-row>    
 </template>
 <script>
+import taggroup from "./taggroup.vue"
+
 export default {
+  components: { taggroup },
   props: {
     item: Object
   }
