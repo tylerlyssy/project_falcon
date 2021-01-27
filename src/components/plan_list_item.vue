@@ -21,6 +21,9 @@
     </v-list-item-content>
     <v-chip-group column>
       <v-chip :color="event.color" filter v-for="event in item.events" :key="event.name">
+        <v-icon>
+          mdi-{{$_.startsWith(event.name, 'every') ? 'update' : 'plus-network'}}
+        </v-icon>
         {{ event.display_name }}
       </v-chip>
     </v-chip-group>

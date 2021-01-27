@@ -21,7 +21,7 @@ let constants = {
   pages: [
     {path: '/devices', name: 'device_list', icon: 'devices', component: device_list},
     {path: '/tests', name: 'test_list', icon: 'script-outline', component: test_list},
-    {path: '/plans', name: 'plan_list', icon: 'chart-sankey-variant', component: plan_list},
+    {path: '/plans', name: 'plan_list', icon: 'format-list-text', component: plan_list},
     {path: '/playlists', name: 'playlist_list', icon: 'list-status', component: playlist_list},
     {path: '/releases', name: 'release_list', icon: 'chart-timeline', component: release_list},
     {path: '/tags', name: 'tag_list', icon: 'tag-multiple', component: tag_list},

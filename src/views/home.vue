@@ -17,9 +17,38 @@
           </v-col>
           <v-col
             class="display-3 text-center"
+            
           >
-            {{item.num.toLocaleString('en')}}
+            <h5 class="primary--text">{{item.num.toLocaleString('en')}}</h5>
           </v-col>
+        </v-card-text>
+      </v-card>
+    </v-row>
+     <v-row justify="space-between" class="mt-5">
+      <v-card 
+        width="33%"
+        v-for="chart of charts"
+        :key="chart.name"
+      >
+        <v-card-text>
+          <v-col
+            class="display-3 text-center"
+          >
+            {{chart.name}}
+          </v-col>
+          <v-sparkline
+            :value="chart.value"
+            color="primary"
+            height="100"
+            padding="24"
+            stroke-linecap="round"
+            smooth
+            auto-draw
+          >
+            <template v-slot:label="item">
+              {{ item.index + 1 }}
+            </template>
+          </v-sparkline>
         </v-card-text>
       </v-card>
     </v-row>
@@ -28,14 +57,21 @@
 
 <script>
 // import { tween } from 'femtotween'
+let array = [...Array(10).keys()]
 export default {
   data() {
     return {
       items: [
         {name: 'Completed Tests', num: 12302940},
         {name: 'Upgraded Devices', num: 13020},
-        {name: 'Released Certified', num: 120},
+        {name: 'Releases Certified', num: 120},
       ],
+      charts: [
+        {name: 'Completed last 24 hrs', value: this.$_.map(array, () => this.$_.random(0, 10))},
+        {name: 'Completed last 2 days', value: this.$_.map(array, () => this.$_.random(0, 10))},
+        {name: 'Completed last 7 days', value: this.$_.map(array, () => this.$_.random(0, 10))},
+      ],
+      array,
       intervals: [null, null, null]
     }
   },
@@ -43,17 +79,12 @@ export default {
     this.intervals[0] = window.setInterval(() => {
       this.items[0].num += this.$_.random(1, 500)
     }, 1000)
-    this.intervals[0] = window.setInterval(() => {
+    this.intervals[1] = window.setInterval(() => {
       this.items[1].num += this.$_.random(1, 50)
     }, 3000)
-    this.intervals[0] = window.setInterval(() => {
+    this.intervals[2] = window.setInterval(() => {
       this.items[2].num += this.$_.random(1, 5)
     }, 5000)
-  },
-  watch: {
-    items(n, o){
-      console.log(n, o)
-    }
   },
   beforeDestroy() {
     for(let interval of this.intervals) {
