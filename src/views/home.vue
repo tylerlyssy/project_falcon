@@ -56,7 +56,6 @@
 </template>
 
 <script>
-// import { tween } from 'femtotween'
 let array = [...Array(10).keys()]
 export default {
   data() {
@@ -72,7 +71,7 @@ export default {
         {name: 'Last 7 days', value: this.$_.map(array, () => this.$_.random(1000, 10000))},
       ],
       array,
-      intervals: [null, null, null]
+      intervals: [null, null, null],
     }
   },
   created() {
