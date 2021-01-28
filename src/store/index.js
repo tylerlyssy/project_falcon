@@ -153,7 +153,7 @@ let plans = _.map([...Array(50).keys()], () => {
     ...make_name(),
     ...make_user(),
     ...make_dates(),
-    tests: _.map(tests.slice(random, 5), t => {
+    tests: _.map(tests.slice(random, random + 5), t => {
       t.iterations = _.random(1, 10)
       t.is_selected = true
       return t
