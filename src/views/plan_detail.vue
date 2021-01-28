@@ -36,9 +36,10 @@
       </v-row>
     </v-navigation-drawer>
     <h1>Test Cases</h1>
-    <v-list two-lines width="80%">
+    <v-list class="overflow-y-auto" max-height="72vh" two-lines width="80%">
       <v-list-item-group>
         <template v-for="(test, index) in tests">
+          <v-divider v-if="index" :key="index-1"></v-divider>
           <v-list-item 
             active="false"
             :key="test.name"
@@ -75,7 +76,6 @@
               </v-col>
             </template>
           </v-list-item>
-
           <v-divider v-if="index < tests.length - 1" :key="index"></v-divider>
         </template>
       </v-list-item-group>

@@ -6,7 +6,8 @@
     <v-row justify='center'>
       <v-color-picker
         class="ma-2"
-        :color="tag.color"
+        readonly
+        v-model="tag.color"
         show-swatches
       ></v-color-picker>
     </v-row>

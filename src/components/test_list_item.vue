@@ -16,7 +16,7 @@
         v-text="`Started At: ${item.started_at}`"
       />
     </v-list-item-content>
-    <taggroup :item="item"/>
+    <taggroup :tags="item.tags"/>
     <v-list-item-action>
       <v-icon :color="item.status ? 'success' : 'error'">{{item.status ? 'mdi-check-circle' : 'mdi-close-circle'}} </v-icon>
     </v-list-item-action>

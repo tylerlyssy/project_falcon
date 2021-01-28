@@ -31,22 +31,22 @@ function make_dates(additions) {
 }
 
 let colors = [
-  'red', 
-  'pink', 
-  'purple', 
-  'deep-purple', 
-  'indigo', 
-  'blue', 
-  'light-blue', 
-  'cyan', 
-  'teal',
-  'green',
-  'lightgreen',
-  'amber',
-  'orange',
-  'deep-orange',
-  'brown',
-  'blue-grey',
+  '#F44336', 
+  '#E91E63', 
+  '#9C27B0', 
+  '#673AB7', 
+  '#3F51B5', 
+  '#2196F3', 
+  '#03A9F4', 
+  '#00BCD4', 
+  '#009688',
+  '#4CAF50',
+  '#8BC34A',
+  '#FFC107',
+  '#FF9800',
+  '#FF5722',
+  '#795548',
+  '#607D8B',
 ]
 
 let tags = _.map(colors, c => {
@@ -124,12 +124,12 @@ function make_user() {
 
 let events = _.map([...Array(50).keys()], (i) => {
   let days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
-  let colors = ['succes', 'error', 'warning', 'accent']
+  let colors = ['success', 'error', 'warning', 'accent']
   let {name} = make_name(1)
   if(i % _.random(2, 5) === 0) {
     name = `every_${days[_.random(0, 6)]}_at_${_.random(1, 23)}REPLACE${_.random(0, 6)}${_.random(0, 6)}`
   } else {
-    name = `new_${name}`
+    name = `new_${name}_version`
   }
   let event = {
     ...make_dates(),
@@ -153,12 +153,12 @@ let plans = _.map([...Array(50).keys()], () => {
     ...make_name(),
     ...make_user(),
     ...make_dates(),
-    tests: _.map(tests.slice(random, random + 5), t => {
+    tests: _.map(tests.slice(random, 5), t => {
       t.iterations = _.random(1, 10)
       t.is_selected = true
       return t
     }),
-    events: [events[_.random(0, 49)]]
+    events: random % 2 ? [events[_.random(0, 49)]] : []
   }
 })
 

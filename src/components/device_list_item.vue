@@ -16,7 +16,7 @@
         "
       ></v-list-item-subtitle>
     </v-list-item-content>
-    <taggroup :item="item"/>
+    <taggroup :tags="item.tags"/>
     <v-list-item-action>
       <v-icon :color="item.health ? 'success' : 'error'"> mdi-heart </v-icon>
     </v-list-item-action>

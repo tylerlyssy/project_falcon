@@ -63,10 +63,8 @@ export default {
     }
   },
   watch: {
-    '$route.name': {
-      handler() {
-        console.log(this.$refs['search_'].$refs['append-inner'].click())
-      }
+    '$vuetify.theme.dark'() {
+      localStorage.dark = this.$vuetify.theme.dark
     }
   }
 };

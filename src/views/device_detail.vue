@@ -13,11 +13,7 @@
         <div v-for="(value, key) in device.meta" :key="key">
           <v-text-field :label="key" :value="value"></v-text-field>
         </div>
-        <v-chip-group column>
-          <v-chip :color="tag.color" filter v-for="tag in device.tags" :key="tag.name">
-            {{ tag.name }}
-          </v-chip>
-        </v-chip-group>
+        <taggroup :tags="device.tags"/>
       </v-form>
       <v-row justify="center" class="mt-2">
         <v-btn-toggle
@@ -94,8 +90,10 @@
 
 <script>
 import {mapGetters} from 'vuex'
+import taggroup from '../components/taggroup.vue'
 
 export default {
+  components: { taggroup },
   props: {
     name: String
   },
